@@ -1,4 +1,9 @@
-# Windmill
-This is the folder for this module.
+# Windmill - Riya Gaitonde
 
-Place all code and files in this directory for the module.
+This is the folder for the code and files for the Windmill module. 
+
+This modules requires the following hardware and software
+
+- Continuous (360 degrees) servo
+- Arduino IDE
+- Libraries required for ESP32 Servo
