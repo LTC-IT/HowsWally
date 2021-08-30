@@ -1,4 +1,6 @@
 # Radio
-This is the folder for this module.
+This is the folder for the code and files for the radio.
 
-Place all code and files in this directory for the module.
+this requires
+-raspberri pi
+-radio
