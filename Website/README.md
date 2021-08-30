@@ -1,4 +1,6 @@
 # Website
-This is the folder for this module.
+This is the folder for this code and files for the website.
 
-Place all code and files in this directory for the module.
+This requires
+- Raspberry Pi
+- Flask
