@@ -9,6 +9,8 @@ from flask_login import login_required
 from sqlalchemy import text
 from werkzeug.security import check_password_hash
 
+# Configure app variables.
+
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
