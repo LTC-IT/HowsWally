@@ -174,3 +174,9 @@ void loadHTML() {
   serverIndex = readFile(SD, "/serverIndex.html");
   loginIndex = readFile(SD, "/loginIndex.html");
 }
+
+void windmill() {
+  /*
+   * Include the functionality or purpose of the function.
+   */
+}
