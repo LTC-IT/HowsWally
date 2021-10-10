@@ -1,7 +1,7 @@
 # HowsWally
 This is the main repo for the Cyber Security hacking range project for the Robotics class 2021S2
 
-Directories have been created for each of the modules/components.
+Directories have been created for each of the modules and/or components.
 
 | Module/Folder Name | Who |
 | -------| --- |
