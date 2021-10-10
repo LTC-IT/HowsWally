@@ -140,7 +140,6 @@ String getTimeAsString() {
   sprintf(humanReadableTime, "%02d:%02d:%02d", now.hour(), now.minute(), now.second());
 
   return humanReadableTime;
-  Serial.println(humanReadableTime);
 }
 
 
