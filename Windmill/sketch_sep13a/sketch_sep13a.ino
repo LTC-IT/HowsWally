@@ -1,17 +1,12 @@
 // Wifi
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <WebServer.h>
-#include <ESPmDNS.h>
+#define FORMAT_SPIFFS_IF_FAILED true
+
+// Wifi & Webserver
+#include "WiFi.h"
+#include "SPIFFS.h"
+#include <ESPAsyncWebServer.h>
 #include "wifiConfig.h"
-#include <ESP32Servo.h>
-
-Servo myservo;  // create servo object to control a servo
-int pos = 0;    // variable to store the servo position
-int servoPin = 12;
-
-String loginIndex, serverIndex;
-WebServer server(80);
+AsyncWebServer server(80);
 
 // SD Card - Adalogger
 #include "FS.h"
@@ -23,14 +18,7 @@ WebServer server(80);
 RTC_PCF8523 rtc;
 
 void setup() {
-  Serial.begin(115200);
-  ESP32PWM::allocateTimer(0);
-  ESP32PWM::allocateTimer(1);
-  ESP32PWM::allocateTimer(2);
-  ESP32PWM::allocateTimer(3);
-  myservo.setPeriodHertz(50);    // standard 50 hz servo
-  myservo.attach(servoPin, 1000, 2000);
-  
+  Serial.begin(9600);
   while (!Serial) {
     delay(10);
   }
@@ -93,15 +81,9 @@ void setup() {
   logEvent("System Initialisation...");
 }
 
-void windmill () {
-  //the code within this function at this stage just turns on the servo to move the windill
-  myservo.write(pos);    // tell servo to go to position in variable 'pos'
-  delay(15);
-}
-
 void loop() {
   server.handleClient();
-  windmill();
+
 }
 
 void setupSD() {
@@ -191,4 +173,29 @@ String readFile(fs::FS &fs, const char * path) {
 void loadHTML() {
   serverIndex = readFile(SD, "/serverIndex.html");
   loginIndex = readFile(SD, "/loginIndex.html");
+}
+
+void logEvent(String dataToLog) {
+  /*
+     Log entries to a file stored in SPIFFS partition on the ESP32.
+  */
+  // Get the updated/current time
+  DateTime rightNow = rtc.now();
+  char csvReadableDate[25];
+  sprintf(csvReadableDate, "%02d,%02d,%02d,%02d,%02d,%02d,",  rightNow.year(), rightNow.month(), rightNow.day(), rightNow.hour(), rightNow.minute(), rightNow.second());
+
+  String logTemp = csvReadableDate + dataToLog + "\n"; // Add the data to log onto the end of the date/time
+
+  const char * logEntry = logTemp.c_str(); //convert the logtemp to a char * variable
+
+  //Add the log entry to the end of logevents.csv
+  appendFile(SPIFFS, "/logEvents.csv", logEntry);
+
+  // Output the logEvents - FOR DEBUG ONLY. Comment out to avoid spamming the serial monitor.
+  //  readFile(SPIFFS, "/logEvents.csv");
+
+  Serial.print("\nEvent Logged: ");
+  Serial.println(logEntry);
+}
+```
 }
