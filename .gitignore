@@ -1,14 +1,8 @@
 
 .DS_Store
-TrainTracks/wificonfig.h/wificonfig.h.ino
-TrainTracks/WebsiteFoundation/WebsiteFoundation.ino
 Windmill/Week_8_work/wifiConfig.h
-Traffic Lights/Traffic_Lights/wifiConfig.h
-Website/venv/
-Website/.idea/inspectionProfiles/profiles_settings.xml
-Website/.idea/inspectionProfiles/Project_Default.xml
-Website/.idea/misc.xml
-Website/.idea/modules.xml
-Website/.idea/vcs.xml
-Website/.idea/Website.iml
-TutorialCode/WebsiteFoundation/wifiConfig.h
+Windmill/sketch_sep13a/wifiConfig.h
+Windmill/Riya9October/wifiConfig.h
+Windmill/Week_8_work/Week_8_work.ino
+Windmill/Week_8_work/Week_8_work.ino
+Windmill/Riya_SPIFFS_Code/wifiConfig.h
