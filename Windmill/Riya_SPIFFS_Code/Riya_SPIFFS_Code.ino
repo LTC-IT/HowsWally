@@ -11,7 +11,7 @@ AsyncWebServer server(80);
 
 Servo myservo;  // create servo object to control a servo
 int pos = 0;    // variable to store the servo position
-int servoPin = 12; //pin which the servo is attached to 
+int servoPin = 12; //pin which the servo is attached to
 
 
 // RTC
@@ -21,7 +21,7 @@ RTC_PCF8523 rtc;
 
 void setup() {
   Serial.begin(9600);
-  myservo.attach(servoPin, 1000, 2000); 
+  myservo.attach(servoPin, 1000, 2000);
 
   while (!Serial) {
     delay(10);
@@ -55,6 +55,14 @@ void setup() {
   server.on("/dashboard", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/dashboard.html", "text/html", false, processor);
   });
+  server.on("/windmill_on", HTTP_GET, [](AsyncWebServerRequest * request) {
+    myservo.write(0);
+    request->send(SPIFFS, "/dashboard.html", "text/html", false, processor);
+  });
+  server.on("/windmill_off", HTTP_GET, [](AsyncWebServerRequest * request) {
+    myservo.write(92);
+    request->send(SPIFFS, "/dashboard.html", "text/html", false, processor);
+  });
   server.on("/logOutput", HTTP_GET, [](AsyncWebServerRequest * request) {
     request->send(SPIFFS, "/logEvents.csv", "text/html", true);
   });
@@ -79,7 +87,7 @@ void windmill () {
 }
 
 void loop() {
-  windmill(); 
+//windmill();
 }
 
 
