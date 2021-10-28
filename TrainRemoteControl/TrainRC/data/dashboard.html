@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  background-color: #40b973;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.item1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+
+</style>
+</head>
+<body>
+
+<h1>Train RC Dashboard</h1>
+
+<div class="grid-container">
+  <div class="item1">Lego Train RC</div>
+  <div class="item2">Date and Time<p>%DATETIME%</p></div>
+  <div class="item3"><a href="/speed=7">Speed 7</a></div>  
+  <div class="item3"><a href="/speed=6">Speed 6</a></div>  
+  <div class="item3"><a href="/speed=5">Speed 5</a></div>  
+  <div class="item3"><a href="/speed=4">Speed 4</a></div>  
+  <div class="item3"><a href="/speed=3">Speed 3</a></div>  
+  <div class="item3"><a href="/speed=2">Speed 2</a></div>  
+  <div class="item3"><a href="/speed=1">Speed 1</a></div>  
+  <div class="item3"><a href="/brake">Stop</a></div>  
+  <div class="item3"><a href="/speed=-7">Speed -7</a></div>  
+  <div class="item3"><a href="/speed=-6">Speed -6</a></div>  
+  <div class="item3"><a href="/speed=-5">Speed -5</a></div>  
+  <div class="item3"><a href="/speed=-4">Speed -4</a></div>  
+  <div class="item3"><a href="/speed=-3">Speed -3</a></div>  
+  <div class="item3"><a href="/speed=-2">Speed -2</a></div>  
+  <div class="item3"><a href="/speed=-1">Speed -1</a></div>  
+  <div class="item1">LogEvents<p><a href="/logOutput">Download</a></div>
+
+</div>
+
+
+</body>
+</html>
