@@ -7,6 +7,14 @@
   MIT license, all text above must be included in any redistribution
  ****************************************************/
 
+/*
+   Important to note - 28/10/21
+
+   The IR receiver used, bought from Jaycar has the Signal (S) and GND (-) pins swapped.
+
+*/
+
+
 #include <PowerFunctions.h>   //Power Functions Library
 
 #define FORMAT_SPIFFS_IF_FAILED true
@@ -107,6 +115,8 @@ void setup() {
   Serial.print("Connected to the Internet");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
+
+
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     if (!request->authenticate(http_username, http_password))
@@ -237,14 +247,31 @@ void setup() {
   //EINK
   display.begin(THINKINK_MONO);
   display.clearBuffer();
-
+  updateEPD();
   logEvent("System Initialisation...");
 }
 
 void loop() {
+  // Nothing needed. 
+  // All web code handled by setup() function.
+}
 
-  //wifiserver();
+void updateEPD() {
+  // Print Heading
+  drawText("Train Remote\nControl", EPD_BLACK, 3, 0, 0);
+  // Print IP address
+  drawText(WiFi.localIP().toString(), EPD_BLACK, 2, 0, 60);
 
+  //  logEvent("Updating the EPD");
+  display.display();
+
+}
+void drawText(String text, uint16_t color, int textSize, int x, int y) {
+  display.setCursor(x, y);
+  display.setTextColor(color);
+  display.setTextSize(textSize);
+  display.setTextWrap(true);
+  display.print(text);
 }
 
 void logEvent(String dataToLog) {
