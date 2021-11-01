@@ -184,7 +184,7 @@ void deleteFile(fs::FS &fs, const char * path) {
 }
 
 
-void trafficLights(){ // Cycle through the colours
+void trafficLights() { // Cycle through the colours
   digitalWrite(rLED, HIGH);
   digitalWrite(yLED, LOW);
   digitalWrite(gLED, LOW);
