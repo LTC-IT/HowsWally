@@ -43,15 +43,14 @@ void setup() {
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  /*use mdns for host name resolution*/
-  if (!MDNS.begin(host)) { //http://esp32.local
-    Serial.println("Error setting up MDNS responder!");
-    while (1) {
-      delay(1000);
-    }
-  }
-  Serial.println("mDNS responder started");
   /*return index page which is stored in serverIndex */
+
+  if (!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED)) {
+    // Follow instructions in README and install
+    // https://github.com/me-no-dev/arduino-esp32fs-plugin
+    Serial.println("SPIFFS Mount Failed");
+    return;
+  }
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest * request) {
     Serial.println("index");
